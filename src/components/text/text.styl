@@ -1,0 +1,52 @@
+.text {
+  display: block;
+  width: 100%;
+}
+
+.text-label {
+  display: block;
+  width: 100%;
+  font-size: 16px;
+  font-weight: $bold;
+  text-transform: uppercase;
+  color: $white;
+  margin-bottom: 8px;
+}
+
+.text-input,
+.text-area {
+  display: block;
+  width: 100%;
+  color: inherit;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 12px 16px;
+  background: rgba($darkgray, 0.25);
+  border: 2px solid $white;
+  appearance: none; // Reset default inputs for iOS/etc.
+}
+
+.text-area {
+  resize: vertical;
+}
+
+/* Disabled styles */
+.text[disabled],
+.text[disabled] * {
+  cursor: not-allowed !important;
+  opacity: 0.65;
+}
+
+.text[disabled] .text-input,
+.text[disabled] .text-area {
+  background: lighten($gray, 80%);
+}
+
+/* Focus styles */
+.text-input:focus,
+.text-area:focus {
+  outline: none; // Disable default focus glow
+  border-color: $primary;
+  box-shadow: 0px 0px 0px 1px rgba($primary, 0.5);
+}

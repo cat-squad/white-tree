@@ -1,0 +1,22 @@
+{
+  "name": "chris-ui",
+  "version": "0.0.1",
+  "private": true,
+  "homepage": "http://chrisheninger.com/chris-ui",
+  "devDependencies": {
+    "gh-pages": "^0.12.0",
+    "react-scripts": "0.8.4",
+    "stylus": "^0.54.5"
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1"
+  },
+  "scripts": {
+    "start": "stylus -w src/styles/index.styl -o src/index.css & react-scripts start",
+    "build": "stylus src/styles/index.styl -o src/index.css && react-scripts build && gh-pages -d build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

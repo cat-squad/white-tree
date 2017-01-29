@@ -1,0 +1,86 @@
+$radio-padding = 12px;
+
+/* Base */
+.radio {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* Icon */
+.radio-icon {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  width: 24px + ($radio-padding * 2);
+  height: 24px + ($radio-padding * 2);
+  border-radius: 100%;
+  padding: $radio-padding;
+  flex-shrink: 0;
+}
+.radio .radio-icon svg {
+  fill: $gray;
+}
+.radio--checked .radio-icon svg {
+  fill: $primary;
+}
+
+/* Label */
+.radio-label {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: $medium;
+}
+
+/* Label spacing (if label is present as sibling) */
+.radio-icon + .radio-label {
+  padding-top: $radio-padding;
+  padding-right: $radio-padding;
+  padding-bottom: $radio-padding;
+}
+
+/* Radio icon ripple animation effect */
+.radio-icon:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-color: $primary;
+  transform: scale(0, 0);
+  opacity: 0.2;
+  transition: 0s;
+}
+
+.radio--checked .radio-icon:after {
+  transform: scale(1, 1);
+  opacity: 0;
+  transition: transform 0.5s, opacity 1s;
+}
+
+/* Disabled styles */
+.radio[disabled],
+.radio[disabled] * {
+  cursor: not-allowed !important;
+  opacity: 0.65;
+}
+
+/* Focus styles */
+.radio:focus {
+  outline: none; // Disable default focus glow on entire label wrapper
+}
+
+.radio:not([disabled]):focus .radio-icon svg {
+  border-radius: 100%;
+  box-shadow: inset 0px 0px 0px 2px rgba($primary, 0.5);
+}
+
+/* Hide HTML input */
+.radio input[type="radio"] {
+  display: none;
+}

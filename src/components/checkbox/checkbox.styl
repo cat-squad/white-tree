@@ -1,0 +1,85 @@
+$checkbox-padding = 12px;
+
+/* Base */
+.checkbox {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* Icon */
+.checkbox-icon {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  width: 24px + ($checkbox-padding * 2);
+  height: 24px + ($checkbox-padding * 2);
+  border-radius: 100%;
+  padding: $checkbox-padding;
+  flex-shrink: 0;
+}
+.checkbox .checkbox-icon svg {
+  fill: $gray;
+}
+.checkbox--checked .checkbox-icon svg {
+  fill: $primary;
+}
+
+/* Label */
+.checkbox-label {
+  font-size: 16px;
+  font-weight: $medium;
+}
+
+/* Label spacing (if label is present as sibling) */
+.checkbox-icon + .checkbox-label {
+  padding-top: $checkbox-padding;
+  padding-right: $checkbox-padding;
+  padding-bottom: $checkbox-padding;
+}
+
+/* Checkbox icon ripple animation effect */
+.checkbox-icon:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-color: $primary;
+  transform: scale(0, 0);
+  opacity: 0.2;
+  transition: 0s;
+}
+
+.checkbox--checked .checkbox-icon:after {
+  transform: scale(1, 1);
+  opacity: 0;
+  transition: transform 0.5s, opacity 1s;
+}
+
+/* Disabled styles */
+.checkbox[disabled],
+.checkbox[disabled] * {
+  cursor: not-allowed !important;
+  opacity: 0.65;
+}
+
+/* Focus styles */
+.checkbox:focus {
+  outline: none; // Disable default focus glow on entire label wrapper
+}
+
+.checkbox:not([disabled]):focus .checkbox-icon svg {
+  border-radius: 5px;
+  box-shadow: inset 0px 0px 0px 3px rgba($primary, 0.5);
+}
+
+/* Hide HTML input */
+.checkbox input[type="checkbox"] {
+  display: none;
+}

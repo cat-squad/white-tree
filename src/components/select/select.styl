@@ -1,0 +1,57 @@
+/* Base */
+.select {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.select-label {
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    font-weight: $medium;
+    margin-bottom: 8px;
+}
+
+.select-input {
+    display: block;
+    width: 100%;
+    color: inherit;
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 20px;
+    padding: 12px 48px 12px 16px;
+    border: 2px solid $gray;
+    border-radius: 2px;
+    cursor: inherit;
+    background: none;
+    background-repeat: no-repeat;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAABYlAAAWJQFJUiTwAAABKElEQVRo3u3ZwQ2CQBAF0I+xADvRMwdjBbQAVobbAhUYDp4txQ7wsiRICBl2/xyIf65q9r/AujNQDMOAPdcBOy8BBBBAAAEEEECAfwYcrV/s+tcJwBPAu7qWjUeYrn89AFwA3Kpr+aFdgUn4M4A6LuQRvo5rPOOa+YBZ+LGoiEn4scwIyxWYh58iGkL4Zhb+B8EAvFc+a3MQ8bdt4to2QNywgY0whA+WPwvTJmYjWOE3nQMsBDP85oMsF8EOn3QSpyI8wie3ElsRXuEBoMh5sLVwAM3rPoI8wmcDjAh4had0o4bbyS08rZ1OQARWR0ubBzYgArMdpw40BkRgzxL0iWwFETwGIZeRcgERvKa4wvMFxzj0eIV3B+iphAACCCCAAAIIIIAAq/UFMXijTZL/bmIAAAAASUVORK5CYII=');
+    background-size: 24px 24px;
+    background-position: right 12px center;
+
+    // Reset default select attributes
+    appearance: none;
+    // Hack for IE10+ to remove the default select arrow they add
+    &::-ms-expand {
+        display: none;
+    }
+}
+
+/* Disabled styles */
+.select[disabled],
+.select[disabled] * {
+  cursor: not-allowed !important;
+  opacity: 0.65;
+}
+
+.select[disabled] .select-input {
+  background: lighten($gray, 80%);
+}
+
+/* Focus styles */
+.select-input:focus {
+  outline: none; // Disable default focus glow
+  border-color: $primary;
+  box-shadow: 0px 0px 0px 2px rgba($primary, 0.5);
+}
