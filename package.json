@@ -1,8 +1,8 @@
 {
-  "name": "chris-ui",
+  "name": "white-tree",
   "version": "0.0.1",
   "private": true,
-  "homepage": "http://chrisheninger.com/chris-ui",
+  "homepage": "http://chrisheninger.com/white-tree",
   "devDependencies": {
     "gh-pages": "^0.12.0",
     "react-scripts": "0.8.4",
