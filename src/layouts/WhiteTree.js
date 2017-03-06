@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from '../assets/logo.svg';
+import Logo from '../assets/Logo';
 import Text from '../components/text/Text';
 
 import { defaultCharacterShape } from '../data';
@@ -47,7 +47,7 @@ class WhiteTree extends Component {
   render() {
     return (
       <div className="container">
-        <img className="logo" src={logo} alt="White Tree Logo" />
+        <Logo />
         <div className="character">
           <div className="character-background">
             {this.renderFormSection('general')}
