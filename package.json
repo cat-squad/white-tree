@@ -1,22 +1,26 @@
 {
   "name": "white-tree",
-  "version": "0.0.1",
+  "version": "1.33.7",
   "private": true,
-  "homepage": "http://chrisheninger.com/white-tree",
-  "devDependencies": {
-    "gh-pages": "^0.12.0",
-    "react-scripts": "0.8.4",
-    "stylus": "^0.54.5"
-  },
-  "dependencies": {
-    "classnames": "^2.2.5",
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1"
-  },
   "scripts": {
+    "precommit": "lint-staged",
     "start": "stylus -w src/styles/index.styl -o src/index.css & react-scripts start",
     "build": "stylus src/styles/index.styl -o src/index.css && react-scripts build && gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "classnames": "2.2.5",
+    "prop-types": "15.6.1",
+    "react": "16.3.1",
+    "react-dom": "16.3.1"
+  },
+  "devDependencies": {
+    "gh-pages": "1.1.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.4",
+    "prettier": "1.11.1",
+    "react-scripts": "1.1.4",
+    "stylus": "0.54.5"
   }
 }
