@@ -2,10 +2,12 @@
   "name": "white-tree",
   "version": "1.33.7",
   "private": true,
+  "homepage": "https://chrisheninger.com/white-tree",
   "scripts": {
     "precommit": "lint-staged",
     "start": "stylus -w src/styles/index.styl -o src/index.css & react-scripts start",
-    "build": "stylus src/styles/index.styl -o src/index.css && react-scripts build && gh-pages -d build",
+    "build": "stylus src/styles/index.styl -o src/index.css && react-scripts build",
+    "deploy": "yarn run build && gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
