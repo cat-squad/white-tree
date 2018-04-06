@@ -11,10 +11,12 @@
   },
   "dependencies": {
     "classnames": "2.2.5",
+    "formik": "^0.11.11",
     "material-ui": "^1.0.0-beta.40",
     "prop-types": "15.6.1",
     "react": "16.3.1",
-    "react-dom": "16.3.1"
+    "react-dom": "16.3.1",
+    "yup": "^0.24.1"
   },
   "devDependencies": {
     "gh-pages": "1.1.0",
