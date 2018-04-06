@@ -1,11 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 
+import WhiteTree from './App';
 import './index.css';
 
-import WhiteTree from './layouts/WhiteTree';
+const theme = createMuiTheme({
+  palette: {
+    type: 'dark',
+  },
+});
 
 ReactDOM.render(
-  <WhiteTree />,
+  <MuiThemeProvider theme={theme}>
+    <WhiteTree />
+  </MuiThemeProvider>,
   document.getElementById('root')
 );

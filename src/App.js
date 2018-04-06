@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Logo from '../assets/Logo';
-import Text from '../components/text/Text';
+import Logo from './assets/Logo';
+import TextField from 'material-ui/TextField';
 
-import { defaultCharacterShape } from '../data';
+import { defaultCharacterShape } from './data';
 
 class WhiteTree extends Component {
   constructor(props) {
@@ -21,11 +21,12 @@ class WhiteTree extends Component {
 
   renderFormInput(section, input) {
     return (
-      <Text
+      <TextField
         key={input}
         label={input}
         value={this.state[section][input]}
-        onChange={(e) => this.onInputChange(section, input, e.target.value)}
+        onChange={e => this.onInputChange(section, input, e.target.value)}
+        fullWidth
       />
     );
   }
@@ -38,9 +39,7 @@ class WhiteTree extends Component {
     const sectionKeys = Object.keys(this.state[section]);
 
     return (
-      <div>
-        {sectionKeys.map(this.renderFormInput.bind(this, section))}
-      </div>
+      <div>{sectionKeys.map(this.renderFormInput.bind(this, section))}</div>
     );
   }
 
