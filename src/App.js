@@ -53,6 +53,8 @@ class WhiteTree extends Component {
       .ref('users/' + this.state.user.uid)
       .set({
         uid: this.state.user.uid,
+        name: this.state.user.displayName,
+        character: this.state.character,
       });
 
     console.log(this.state);
