@@ -37,7 +37,6 @@ class WhiteTree extends Component {
       this.setState(() => ({
         user,
       }));
-      console.log(user.displayName);
     });
   };
 
