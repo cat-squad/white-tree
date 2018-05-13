@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Logo from './assets/Logo';
 import TextField from 'material-ui/TextField';
+import firebase, { auth, provider } from './firebase.js';
 
 import { defaultCharacterShape } from './data';
 
@@ -8,7 +9,10 @@ class WhiteTree extends Component {
   constructor(props) {
     super(props);
 
-    this.state = defaultCharacterShape;
+    this.state = {
+      ...defaultCharacterShape,
+      user: null,
+    };
   }
 
   onInputChange(section, input, value) {

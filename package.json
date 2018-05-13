@@ -2,17 +2,18 @@
   "name": "white-tree",
   "version": "1.33.7",
   "private": true,
-  "homepage": "https://chrisheninger.com/white-tree",
+  "homepage": "https://white-tree.firebaseapp.com",
   "scripts": {
     "precommit": "lint-staged",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "yarn run build && gh-pages -d build",
+    "deploy": "yarn run build && firebase deploy",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "dependencies": {
     "classnames": "2.2.5",
+    "firebase": "^5.0.2",
     "formik": "^0.11.11",
     "material-ui": "next",
     "prop-types": "15.6.1",
@@ -22,7 +23,6 @@
   },
   "devDependencies": {
     "flow-bin": "^0.72.0",
-    "gh-pages": "1.1.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.1.0",
     "prettier": "1.12.1",
