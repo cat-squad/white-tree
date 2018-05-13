@@ -41,13 +41,7 @@ class WhiteTree extends Component {
     });
   };
 
-  handleSubmit(displayName) {
-    const usersRef = firebase.database().ref('users');
-    // const user = {
-    //   uid: this.state.user.uid,
-    //   user: this.state.user.displayName,
-    // }
-    // usersRef.push(user);
+  handleSubmit() {
     firebase
       .database()
       .ref('users/' + this.state.user.uid)
@@ -56,8 +50,18 @@ class WhiteTree extends Component {
         name: this.state.user.displayName,
         character: this.state.character,
       });
+  }
 
-    console.log(this.state);
+  retrieveData() {
+    firebase
+      .database()
+      .ref('users/')
+      .orderByChild('uid')
+      .equalTo(this.state.user.uid)
+      .once('value')
+      .then(function(snapshot) {
+        console.log(snapshot.val());
+      });
   }
 
   onInputChange(section, input, value) {
@@ -107,11 +111,14 @@ class WhiteTree extends Component {
             )}
 
             {this.state.user && (
-              <button
-                onClick={() => this.handleSubmit(this.state.user.displayName)}
-              >
-                Submit Your Data
-              </button>
+              <div>
+                <button onClick={() => this.handleSubmit()}>
+                  Submit Your Data
+                </button>
+                <button onClick={() => this.retrieveData()}>
+                  Retrieve Data
+                </button>
+              </div>
             )}
 
             {this.renderFormSection('general')}
