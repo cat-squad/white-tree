@@ -59,10 +59,10 @@ class WhiteTree extends Component {
   }
 
   onInputChange(section, input, value) {
-    const newSectionState = { ...this.state[section] };
-    newSectionState[input] = value;
+    const newCharacterState = { ...this.state.character };
+    newCharacterState[section][input] = value;
     this.setState({
-      [section]: newSectionState,
+      character: newCharacterState,
     });
   }
 
