@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
-import firebase, { auth, GoogleAuthProvider } from './firebase.js';
+import firebase, { auth, GoogleAuthProvider, db } from './firebase.js';
 
 import { defaultCharacterShape } from './data';
 import Layout from './Layout';
@@ -10,15 +10,16 @@ class WhiteTree extends Component {
     super(props);
 
     this.state = {
-      ...defaultCharacterShape,
+      character: { ...defaultCharacterShape },
       user: null,
+      loaded: false,
     };
   }
 
   componentDidMount() {
     auth.onAuthStateChanged(user => {
       if (user) {
-        this.setState(() => ({ user }));
+        this.setState(() => ({ user, loaded: true }));
       }
     });
   }
@@ -40,6 +41,23 @@ class WhiteTree extends Component {
     });
   };
 
+  handleSubmit(displayName) {
+    const usersRef = firebase.database().ref('users');
+    // const user = {
+    //   uid: this.state.user.uid,
+    //   user: this.state.user.displayName,
+    // }
+    // usersRef.push(user);
+    firebase
+      .database()
+      .ref('users/' + this.state.user.uid)
+      .set({
+        uid: this.state.user.uid,
+      });
+
+    console.log(this.state);
+  }
+
   onInputChange(section, input, value) {
     const newSectionState = { ...this.state[section] };
     newSectionState[input] = value;
@@ -53,7 +71,7 @@ class WhiteTree extends Component {
       <TextField
         key={input}
         label={input}
-        value={this.state[section][input]}
+        value={this.state.character[section][input]}
         onChange={e => this.onInputChange(section, input, e.target.value)}
         fullWidth
       />
@@ -61,11 +79,11 @@ class WhiteTree extends Component {
   }
 
   renderFormSection(section) {
-    if (!this.state[section]) {
+    if (!this.state.character[section]) {
       return null;
     }
 
-    const sectionKeys = Object.keys(this.state[section]);
+    const sectionKeys = Object.keys(this.state.character[section]);
 
     return (
       <div>{sectionKeys.map(this.renderFormInput.bind(this, section))}</div>
@@ -84,6 +102,14 @@ class WhiteTree extends Component {
               <button onClick={this.handleSignIn}> SIGN IN </button>
             ) : (
               <button onClick={this.handleSignOut}> SIGN OUT </button>
+            )}
+
+            {this.state.user && (
+              <button
+                onClick={() => this.handleSubmit(this.state.user.displayName)}
+              >
+                Submit Your Data
+              </button>
             )}
 
             {this.renderFormSection('general')}
