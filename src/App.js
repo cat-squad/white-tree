@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Logo from './assets/Logo';
 import TextField from 'material-ui/TextField';
 
 import { defaultCharacterShape } from './data';
+import Layout from './Layout';
 
 class WhiteTree extends Component {
   constructor(props) {
@@ -45,8 +45,7 @@ class WhiteTree extends Component {
 
   render() {
     return (
-      <div className="container">
-        <Logo />
+      <Layout>
         <div className="character">
           <div className="character-background">
             {this.renderFormSection('general')}
@@ -60,7 +59,7 @@ class WhiteTree extends Component {
             {this.renderFormSection('equipment')}
           </div>
         </div>
-      </div>
+      </Layout>
     );
   }
 }
