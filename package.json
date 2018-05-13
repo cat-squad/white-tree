@@ -5,8 +5,8 @@
   "homepage": "https://chrisheninger.com/white-tree",
   "scripts": {
     "precommit": "lint-staged",
-    "start": "stylus -w src/styles/index.styl -o src/index.css & react-scripts start",
-    "build": "stylus src/styles/index.styl -o src/index.css && react-scripts build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "deploy": "yarn run build && gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
@@ -14,18 +14,18 @@
   "dependencies": {
     "classnames": "2.2.5",
     "formik": "^0.11.11",
-    "material-ui": "^1.0.0-beta.40",
+    "material-ui": "next",
     "prop-types": "15.6.1",
-    "react": "16.3.1",
-    "react-dom": "16.3.1",
-    "yup": "^0.24.1"
+    "react": "16.3.2",
+    "react-dom": "16.3.2",
+    "yup": "0.24.1"
   },
   "devDependencies": {
+    "flow-bin": "^0.72.0",
     "gh-pages": "1.1.0",
     "husky": "^0.14.3",
-    "lint-staged": "^7.0.4",
-    "prettier": "1.11.1",
-    "react-scripts": "1.1.4",
-    "stylus": "0.54.5"
+    "lint-staged": "^7.1.0",
+    "prettier": "1.12.1",
+    "react-scripts": "1.1.4"
   }
 }
