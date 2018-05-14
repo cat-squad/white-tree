@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
-import firebase, { auth, GoogleAuthProvider, db } from './firebase.js';
+import firebase, { auth, GoogleAuthProvider } from './firebase.js';
 
 import { defaultCharacterShape } from './data';
 import Layout from './Layout';
@@ -55,12 +55,9 @@ class WhiteTree extends Component {
   retrieveData() {
     firebase
       .database()
-      .ref('users/')
-      .orderByChild('uid')
-      .equalTo(this.state.user.uid)
-      .once('value')
-      .then(function(snapshot) {
-        console.log(snapshot.val());
+      .ref('users/' + this.state.user.uid)
+      .once('value', function(snap) {
+        console.log(snap.val());
       });
   }
 
