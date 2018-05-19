@@ -20,6 +20,7 @@ class WhiteTree extends Component {
     auth.onAuthStateChanged(user => {
       if (user) {
         this.setState(() => ({ user, loaded: true }));
+        this.retrieveData();
       }
     });
   }
@@ -52,14 +53,18 @@ class WhiteTree extends Component {
       });
   }
 
-  retrieveData() {
+  retrieveData = () => {
+    const self = this;
     firebase
       .database()
       .ref('users/' + this.state.user.uid)
       .once('value', function(snap) {
         console.log(snap.val());
+        self.setState({
+          character: snap.val().character,
+        });
       });
-  }
+  };
 
   onInputChange(section, input, value) {
     const newCharacterState = { ...this.state.character };
