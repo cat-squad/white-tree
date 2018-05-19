@@ -10,15 +10,17 @@ class WhiteTree extends Component {
     super(props);
 
     this.state = {
-      ...defaultCharacterShape,
+      character: { ...defaultCharacterShape },
       user: null,
+      loaded: false,
     };
   }
 
   componentDidMount() {
     auth.onAuthStateChanged(user => {
       if (user) {
-        this.setState(() => ({ user }));
+        this.setState(() => ({ user, loaded: true }));
+        this.retrieveData();
       }
     });
   }
@@ -40,11 +42,35 @@ class WhiteTree extends Component {
     });
   };
 
+  handleSubmit() {
+    firebase
+      .database()
+      .ref('users/' + this.state.user.uid)
+      .set({
+        uid: this.state.user.uid,
+        name: this.state.user.displayName,
+        character: this.state.character,
+      });
+  }
+
+  retrieveData = () => {
+    const self = this;
+    firebase
+      .database()
+      .ref('users/' + this.state.user.uid)
+      .once('value', function(snap) {
+        console.log(snap.val());
+        self.setState({
+          character: snap.val().character,
+        });
+      });
+  };
+
   onInputChange(section, input, value) {
-    const newSectionState = { ...this.state[section] };
-    newSectionState[input] = value;
+    const newCharacterState = { ...this.state.character };
+    newCharacterState[section][input] = value;
     this.setState({
-      [section]: newSectionState,
+      character: newCharacterState,
     });
   }
 
@@ -53,7 +79,7 @@ class WhiteTree extends Component {
       <TextField
         key={input}
         label={input}
-        value={this.state[section][input]}
+        value={this.state.character[section][input]}
         onChange={e => this.onInputChange(section, input, e.target.value)}
         fullWidth
       />
@@ -61,11 +87,11 @@ class WhiteTree extends Component {
   }
 
   renderFormSection(section) {
-    if (!this.state[section]) {
+    if (!this.state.character[section]) {
       return null;
     }
 
-    const sectionKeys = Object.keys(this.state[section]);
+    const sectionKeys = Object.keys(this.state.character[section]);
 
     return (
       <div>{sectionKeys.map(this.renderFormInput.bind(this, section))}</div>
@@ -84,6 +110,17 @@ class WhiteTree extends Component {
               <button onClick={this.handleSignIn}> SIGN IN </button>
             ) : (
               <button onClick={this.handleSignOut}> SIGN OUT </button>
+            )}
+
+            {this.state.user && (
+              <div>
+                <button onClick={() => this.handleSubmit()}>
+                  Submit Your Data
+                </button>
+                <button onClick={() => this.retrieveData()}>
+                  Retrieve Data
+                </button>
+              </div>
             )}
 
             {this.renderFormSection('general')}
