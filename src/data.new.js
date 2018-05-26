@@ -1,6 +1,5 @@
-// @Flow
-
-type General = {
+// @flow
+export type General = {
   alignment: string,
   class: string,
   deity: string,
@@ -11,7 +10,7 @@ type General = {
   size: string,
 };
 
-type Appearance = {
+export type Appearance = {
   age: string,
   eyes: string,
   gender: string,
@@ -21,20 +20,20 @@ type Appearance = {
   weight: string,
 };
 
-type Points = {
-  hp: number,
-  reach: number,
-  space: number,
-  speed: number,
-  xp: number,
+export type Points = {
+  hp: number | string,
+  reach: number | string,
+  space: number | string,
+  speed: number | string,
+  xp: number | string,
 };
 
-type Ability = {
-  score: number,
-  modifier: number,
+export type Ability = {
+  score: number | string,
+  modifier: number | string,
 };
 
-type Abilities = {
+export type Abilities = {
   str: Ability,
   dex: Ability,
   con: Ability,
@@ -43,74 +42,73 @@ type Abilities = {
   cha: Ability,
 };
 
-type Attack = {
-  bab: number,
-  cmb: number,
-  conc: number,
-  init: number,
-  melee: number,
-  range: number,
+export type Attack = {
+  bab: number | string,
+  cmb: number | string,
+  conc: number | string,
+  init: number | string,
+  melee: number | string,
+  range: number | string,
 };
 
-type Defense = {
-  ac: number,
-  cmd: number,
-  fort: number,
-  ref: number,
-  touch: number,
-  will: number,
+export type Defense = {
+  ac: number | string,
+  cmd: number | string,
+  fort: number | string,
+  ref: number | string,
+  touch: number | string,
+  will: number | string,
 };
 
-type Weapon = {
+export type Weapon = {
   ammunition: string,
-  attack: number,
-  crit: number,
-  dmg: number,
+  attack: number | string,
+  crit: number | string,
+  dmg: number | string,
   name: string,
-  range: number,
+  range: number | string,
   type: string,
 };
 
-type Armor = {
-  bonus: number,
-  checkPenalty: number,
+export type Armor = {
+  bonus: number | string,
+  checkPenalty: number | string,
   name: string,
   properties: string,
-  spellFailure: number,
+  spellFailure: number | string,
   type: string,
-  weight: number,
+  weight: number | string,
 };
 
-type Item = {
+export type Item = {
   name: string,
   description: string,
-  weight: number,
+  weight: number | string,
 };
 
-type Equipment = {
-  gold: number,
+export type Equipment = {
+  gold: number | string,
   armor: Array<Armor>,
   items: Array<Item>,
-  weapon1: Weapon,
-  weapon2: Weapon,
+  weapons: Array<Weapon>,
 };
 
-type Skill = {
+export type Skill = {
   abilityName: string,
-  abilityModifier: number,
+  abilityModifier: number | string,
   classSkill: boolean,
-  miscModifier: number,
+  miscModifier: number | string,
   name: string,
-  ranks: number,
-  totalBonus: number,
+  ranks: number | string,
+  totalBonus: number | string,
 };
 
-type Skills = {
+export type Skills = {
   acrobatics: Skill,
   // TODO
 };
 
-type Character = {
+export type Character = {
   abilities: Abilities,
   appearance: Appearance,
   attack: Attack,
@@ -196,52 +194,49 @@ export const defaultCharacterShape: Character = {
     will: '',
   },
 
-  weapon: {
-    ammunition: '',
-    attack: '',
-    crit: '',
-    dmg: '',
-    name: '',
-    range: '',
-    type: '',
-  },
-
-  armor: {
-    bonus: '',
-    checkPenalty: '',
-    name: '',
-    properties: '',
-    spellFailure: '',
-    type: '',
-    weight: '',
-  },
-
-  item: {
-    name: '',
-    description: '',
-    weight: '',
-  },
-
   equipment: {
     gold: '',
-    armor: [],
-    items: [],
-    weapon1: {},
-    weapon2: {},
-  },
-
-  skill: {
-    abilityName: '',
-    abilityModifier: '',
-    classSkill: false,
-    miscModifier: '',
-    name: '',
-    ranks: '',
-    totalBonus: '',
+    armor: [
+      {
+        bonus: '',
+        checkPenalty: '',
+        name: '',
+        properties: '',
+        spellFailure: '',
+        type: '',
+        weight: '',
+      },
+    ],
+    items: [
+      {
+        name: '',
+        description: '',
+        weight: '',
+      },
+    ],
+    weapons: [
+      {
+        ammunition: '',
+        attack: '',
+        crit: '',
+        dmg: '',
+        name: '',
+        range: '',
+        type: '',
+      },
+    ],
   },
 
   skills: {
-    acrobatics: {},
+    acrobatics: {
+      abilityName: '',
+      abilityModifier: '',
+      classSkill: false,
+      miscModifier: '',
+      name: '',
+      ranks: '',
+      totalBonus: '',
+    },
     // TODO
   },
 };
