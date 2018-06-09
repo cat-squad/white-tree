@@ -1,6 +1,4 @@
-// @Flow
-
-//  FIRST PAGE OF PATHFINDER CHARACTER SHEET
+// @flow
 type General = {
   name: string,
   race: string,
@@ -15,7 +13,7 @@ type General = {
   age: number,
 };
 
-type Abiltiy = {
+type Ability = {
   score: number,
   modifier: number,
   tempAdjustment: number,
@@ -67,7 +65,7 @@ type Throw = {
 type SavingThrows = {
   fortitude: Throw,
   reflex: Throw,
-  will: Throe,
+  will: Throw,
 };
 
 type Attack = {
@@ -86,15 +84,12 @@ type Weapon = {
   attackBonus: string,
 };
 
-type Weapons = {
-  list: Array<Weapon>,
-};
+type Weapons = Array<Weapon>;
 
 type Skill = {
   abilityModifier: number,
   ranks: number,
   miscModifier: number,
-  skill: string,
   bonus: number,
 };
 
@@ -146,9 +141,7 @@ type Armor = {
   properties: string,
 };
 
-type ArmorList = {
-  list: Array<Armor>,
-};
+type ArmorList = Array<Armor>;
 
 type Item = {
   name: string,
@@ -158,38 +151,217 @@ type Item = {
 };
 
 type Inventory = {
-  list: Array<Item>,
+  items: Array<Item>,
   gold: number,
 };
 
 type SpecialAbility = {
   name: string,
-  description: stirng,
+  description: string,
 };
 
 type Feat = {
   ...SpecialAbility,
 };
 
-type Feats = {
-  list: Array<Feat>,
-};
+type Feats = Array<Feat>;
 
-type SpecialAbilities = {
-  list: Array<SpecialAbility>,
-};
+type SpecialAbilities = Array<SpecialAbility>;
 
 type Spell = {
-  ...SpecialAbility,
+  name: string,
+  description: string,
   level: number,
   spellsPerDay: number,
 };
 
+type Spells = Array<Spell>;
+
 //  ADDITIONAL USEFUL CONTENT NOT ON THE PATHFINDER CHARACTER SHEET
-type Backstory = {
-  backStory: string,
+type Backstory = string;
+type Notes = string;
+
+// EXPORT DEFAULT CHARACTER SHAPE
+export type CharacterInfo = {
+  general: General,
+  abilities: Abilities,
+  health: Health,
+  initiative: Initiative,
+  armorClass: ArmorClass,
+  savingThrows: SavingThrows,
+  attack: Attack,
+  weapons: Weapons,
+  skills: Skills,
+  armorList: ArmorList,
+  inventory: Inventory,
+  feats: Feats,
+  specialAbilities: SpecialAbilities,
+  spells: Spells,
+  backstory: Backstory,
+  notes: Notes,
 };
 
-type Notes = {
-  notes: string,
+const emptyAbility = {
+  score: 0,
+  modifier: 0,
+  tempAdjustment: 0,
+  tempModifier: 0,
+};
+
+const emptyThrow = {
+  baseSave: 0,
+  magicModifier: 0,
+  sizeModifier: 0,
+  naturalArmor: 0,
+  deflectionModifier: 0,
+  miscModifier: 0,
+};
+
+const emptyWeapon = {
+  name: '',
+  type: '',
+  range: '',
+  ammunition: '',
+  damage: '',
+  critical: '',
+  attackBonus: '',
+};
+
+const emptySkill = {
+  abilityModifier: 0,
+  ranks: 0,
+  miscModifier: 0,
+  bonus: 0,
+};
+
+const emptySkills = {
+  acrobatics: emptySkill,
+  appraise: emptySkill,
+  bluff: emptySkill,
+  climb: emptySkill,
+  craft: emptySkill,
+  diplomacy: emptySkill,
+  disbaleDevice: emptySkill,
+  disguise: emptySkill,
+  escapeArtist: emptySkill,
+  fly: emptySkill,
+  handleAnimal: emptySkill,
+  heal: emptySkill,
+  intimidate: emptySkill,
+  knowledgeArcana: emptySkill,
+  knowledgeDungeoneering: emptySkill,
+  knowledgeEngineering: emptySkill,
+  knowledgeGeography: emptySkill,
+  knowledgeHistory: emptySkill,
+  knowledgeLocal: emptySkill,
+  knowledgeNature: emptySkill,
+  knowledgeNobility: emptySkill,
+  knowledgePlanes: emptySkill,
+  knowledgeReligion: emptySkill,
+  linguistics: emptySkill,
+  perception: emptySkill,
+  perform: emptySkill,
+  profession: emptySkill,
+  ride: emptySkill,
+  senseMotive: emptySkill,
+  spellcraft: emptySkill,
+  stealth: emptySkill,
+  survival: emptySkill,
+  swim: emptySkill,
+  useMagicDevice: emptySkill,
+};
+
+const emptyArmor = {
+  name: '',
+  bonus: 0,
+  type: '',
+  checkPenalty: 0,
+  spellFailure: 0,
+  weight: 0,
+  properties: '',
+};
+
+const emptyItem = {
+  name: '',
+  description: '',
+  quantity: 0,
+  weight: 0,
+};
+
+const emptySpecialAbility = {
+  name: '',
+  description: '',
+};
+
+const emptySpell = {
+  name: '',
+  description: '',
+  level: 0,
+  spellsPerDay: 0,
+};
+
+export const defaultCharacter = {
+  general: {
+    name: '',
+    race: '',
+    class: '',
+    level: '',
+    alignment: '',
+    height: '',
+    weight: '',
+    hair: '',
+    eyes: '',
+    gender: '',
+    age: 25,
+  },
+  abilities: {
+    strength: emptyAbility,
+    dexterity: emptyAbility,
+    constitution: emptyAbility,
+    intelligence: emptyAbility,
+    wisdom: emptyAbility,
+    charisma: emptyAbility,
+  },
+  health: {
+    maxHP: 0,
+    currentHP: 0,
+    Wounds: '',
+    nonlethalDamange: '',
+  },
+  initiative: {
+    dexModifier: 0,
+    miscModifier: 0,
+  },
+  armorClass: {
+    base: 10,
+    armorBonus: 0,
+    shieldBonus: 0,
+    dexModifier: 0,
+    sizeModifier: 0,
+    naturalArmor: 0,
+    deflectionModifier: 0,
+    miscModifier: 0,
+  },
+  savingThrows: {
+    fortitude: emptyThrow,
+    reflex: emptyThrow,
+    will: emptyThrow,
+  },
+  attack: {
+    bab: 0,
+    cmb: 0,
+    cmd: 0,
+  },
+  weapons: [emptyWeapon, emptyWeapon, emptyWeapon],
+  skills: emptySkills,
+  armorList: [emptyArmor, emptyArmor, emptyArmor],
+  inventory: {
+    items: [emptyItem, emptyItem, emptyItem],
+    gold: 10500,
+  },
+  feats: [emptySpecialAbility],
+  specialAbilities: [emptySpecialAbility],
+  spells: [emptySpell, emptySpell, emptySpell],
+  backstory: '',
+  notes: '',
 };
